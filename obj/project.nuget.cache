@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "Ess1rheR+iw=",
+  "success": true,
+  "projectFilePath": "/home/uddstrom/Code/temp/ProductApi/ProductApi.csproj",
+  "expectedPackageFiles": [
+    "/home/uddstrom/.nuget/packages/microsoft.netcore.app.ref/10.0.0-preview.4.25258.110/microsoft.netcore.app.ref.10.0.0-preview.4.25258.110.nupkg.sha512",
+    "/home/uddstrom/.nuget/packages/microsoft.aspnetcore.app.ref/10.0.0-preview.4.25258.110/microsoft.aspnetcore.app.ref.10.0.0-preview.4.25258.110.nupkg.sha512",
+    "/home/uddstrom/.nuget/packages/microsoft.netcore.app.host.linux-x64/10.0.0-preview.4.25258.110/microsoft.netcore.app.host.linux-x64.10.0.0-preview.4.25258.110.nupkg.sha512"
+  ],
+  "logs": []
+}
