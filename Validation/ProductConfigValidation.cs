@@ -1,3 +1,4 @@
+using System.Text.Json;
 using NJsonSchema;
 using productapi.model;
 
@@ -15,8 +16,14 @@ public static class ProductConfigValidation
     {
         var validationErrors = new List<ValidationError>();
 
-        var json = System.Text.Json.JsonSerializer.Serialize(config);
-        var schema = await JsonSchema.FromFileAsync("./SimpleSchema.json");
+        var serializeOptions = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            WriteIndented = true
+        };
+
+        var json = JsonSerializer.Serialize(config, serializeOptions);
+        var schema = await JsonSchema.FromFileAsync("./Schemas/ProductSchema.json");
         var errors = schema.Validate(json);
 
         if (errors.Count > 0)

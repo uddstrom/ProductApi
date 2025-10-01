@@ -7,11 +7,10 @@
     "properties": {
         "ram": {
             "description": "The size of the memory.",
-            "type": "integer",
+            "type": "number",
             "minimum": 256,
             "maximum": 2048,
             "errorMessage": "invalid amount of memory"
         }
-    },
-    "required": []
+    }
 }
