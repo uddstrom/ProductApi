@@ -5,6 +5,12 @@ using productapi.model;
 
 namespace productapi.validation;
 
+public record ValidationResult
+{
+    public bool IsValid { get; init; }
+    public ICollection<ValidationError> Errors { get; init; } = [];
+}
+
 public record ValidationError
 {
     public string Path { get; init; } = string.Empty;
@@ -19,14 +25,26 @@ public static class ProductConfigValidation
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
     };
 
-    public static async Task<ICollection<ValidationError>> ValidateProductConfiguration(JsonElement config)
+    public static async Task<ValidationResult> ValidateProductConfiguration(JsonElement config)
     {
         var errors = await ValidateJsonStructure(config);
         if (errors.Count == 0)
         {
             errors = ValidateSemantics(config);
+            if (errors.Count == 0)
+            {
+                return new ValidationResult
+                {
+                    IsValid = true
+                };
+            }
         }
-        return errors;
+
+        return new ValidationResult
+        {
+            IsValid = false,
+            Errors = errors
+        };
     }
 
     private static async Task<ICollection<ValidationError>> ValidateJsonStructure(JsonElement config)

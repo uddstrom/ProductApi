@@ -5,6 +5,7 @@ namespace productapi.model;
 
 [JsonDerivedType(typeof(SurvivorProtection))]
 [JsonDerivedType(typeof(PayoutStartAge))]
+[JsonDerivedType(typeof(PremiumAmount))]
 public abstract record Parameter
 {
     public virtual string Name { get; } = string.Empty;

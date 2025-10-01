@@ -6,8 +6,6 @@ using productapi.validation;
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
-
 app.MapPost("/products/{id}/configuration/validate", async Task<IResult> (string id, [FromBody] JsonElement config) =>
 {
     return Results.Ok(await ProductConfigValidation.ValidateProductConfiguration(config));
@@ -15,10 +13,10 @@ app.MapPost("/products/{id}/configuration/validate", async Task<IResult> (string
 
 app.MapPost("/products/{id}/configuration/schema", async Task<IResult> (string id, [FromBody] JsonElement config) =>
 {
-    var errors = await ProductConfigValidation.ValidateProductConfiguration(config);
-    if (errors.Count > 0)
+    var validationResult = await ProductConfigValidation.ValidateProductConfiguration(config);
+    if (!validationResult.IsValid)
     {
-        return Results.BadRequest(errors);
+        return Results.BadRequest(validationResult);
     }
 
     var schema = new InsuranceProduct
