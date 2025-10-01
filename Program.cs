@@ -19,8 +19,22 @@ app.MapPost("/products/{prodcutId}/configuration/schema", async Task<IResult> (s
         return Results.BadRequest(validationResult);
     }
 
+    // parameters set by the user
     var spec = ProductConfigValidation.JsonToParameters(config);
-    var engine = new RulesEngine(prodcutId);
+
+    // get age from jwt
+    var age = spec.Age;
+
+    // get this stuff from Lumera
+    var lumeraStuff = new LumeraSettings
+    {
+        InsuranceProductName = "Pensionsförsäkring",
+        InsuranceProductDescription = "Pensionsförsäkring",
+        Z = spec.Z,
+        TaxCategory = spec.TaxCategory
+    };
+
+    var engine = new RulesEngine(prodcutId, age, lumeraStuff);
     var schema = engine.GetProdcutConfigurationSchema(spec);
 
     return Results.Ok(schema);
