@@ -26,7 +26,7 @@ app.MapPost("/products/{id}/configuration/schema", async Task<IResult> (string i
         InsuranceProductName = "Pensionsförsäkring",
         InsuranceProductDescription = "Some product description",
         Parameters = [
-            new SurvivorProtection { Value = true},
+            new SurvivorProtection { Value = true },
             new PayoutStartAge { Minimum = 55, Maximum = 65 }
         ],
     };

@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using NJsonSchema;
 using productapi.model;
 
@@ -19,7 +20,7 @@ public static class ProductConfigValidation
         var serializeOptions = new JsonSerializerOptions
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            WriteIndented = true
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         };
 
         var json = JsonSerializer.Serialize(config, serializeOptions);
@@ -41,7 +42,7 @@ public static class ProductConfigValidation
         }
 
         // Json structur valid, continue with semantic validation
-        if (!IsPowerOfTwo(config.Ram))
+        if (config.Ram.HasValue && !IsPowerOfTwo(config.Ram.Value))
         {
             validationErrors.Add(new()
             {
@@ -55,6 +56,6 @@ public static class ProductConfigValidation
 
     private static bool IsPowerOfTwo(int number)
     {
-        return number == 0 || number > 0 && (number & (number - 1)) == 0;
+        return number > 0 && (number & (number - 1)) == 0;
     }
 }

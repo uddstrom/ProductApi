@@ -9,8 +9,13 @@
             "description": "The size of the memory.",
             "type": "number",
             "minimum": 256,
-            "maximum": 2048,
-            "errorMessage": "invalid amount of memory"
+            "maximum": 2048
+        },
+        "survivorProtection": {
+            "type": "boolean"
         }
-    }
+    },
+    "required": [
+        "ram"
+    ]
 }
