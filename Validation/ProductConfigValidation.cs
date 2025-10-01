@@ -47,6 +47,11 @@ public static class ProductConfigValidation
         };
     }
 
+    public static InsuranceProductSpecification JsonToParameters(JsonElement config)
+    {
+        return config.Deserialize<InsuranceProductSpecification>(serializeOptions) ?? throw new Exception("Could not deserialize...");
+    }
+
     private static async Task<ICollection<ValidationError>> ValidateJsonStructure(JsonElement config)
     {
         var validationErrors = new List<ValidationError>();
@@ -74,7 +79,7 @@ public static class ProductConfigValidation
     {
         var validationErrors = new List<ValidationError>();
 
-        var parameters = config.Deserialize<InsuranceProductRequest>(serializeOptions) ?? throw new Exception("Could not deserialize...");
+        var parameters = config.Deserialize<InsuranceProductSpecification>(serializeOptions) ?? throw new Exception("Could not deserialize...");
 
         if (parameters.PremiumAmount.HasValue && !IsPowerOfTwo(parameters.PremiumAmount.Value))
         {

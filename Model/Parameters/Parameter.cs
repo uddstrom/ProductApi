@@ -4,7 +4,7 @@ namespace productapi.model;
 
 
 [JsonDerivedType(typeof(SurvivorProtection))]
-[JsonDerivedType(typeof(PayoutStartAge))]
+[JsonDerivedType(typeof(PayoutStartDate))]
 [JsonDerivedType(typeof(PremiumAmount))]
 public abstract record Parameter
 {

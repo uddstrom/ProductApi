@@ -5,6 +5,17 @@
     "description": "A product from Acme's catalog",
     "type": "object",
     "properties": {
+        "z": {
+            "description": "default payout start date",
+            "type": "string",
+            "format": "date"
+        },
+        "age": {
+            "description": "age of insured person",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 120
+        },
         "premiumAmount": {
             "description": "premium amount",
             "type": "number",
@@ -23,6 +34,8 @@
         }
     },
     "required": [
+        "z",
+        "age",
         "taxCategory"
     ]
 }
