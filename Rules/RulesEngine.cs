@@ -17,9 +17,9 @@ public class RulesEngine
         // _rules.Add(new PremiumAmountRule());
     }
 
-    public InsuranceProduct GetProdcutConfigurationSchema(InsuranceProductSpecification parameters)
+    public InsuranceProductSchema GetProdcutConfigurationSchema(InsuranceProductSpecification parameters)
     {
-        var schema = new InsuranceProduct
+        var schema = new InsuranceProductSchema
         {
             InsuranceProductId = _productId,
             InsuranceProductName = "Pensionsförsäkring",

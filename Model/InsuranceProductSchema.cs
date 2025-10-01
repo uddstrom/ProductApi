@@ -1,6 +1,6 @@
 namespace productapi.model;
 
-public record InsuranceProduct : SchemaBase
+public record InsuranceProductSchema : SchemaBase
 {
     public required string InsuranceProductId { get; init; }
     public required string InsuranceProductName { get; init; }
