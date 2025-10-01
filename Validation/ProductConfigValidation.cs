@@ -13,19 +13,28 @@ public record ValidationError
 
 public static class ProductConfigValidation
 {
-    public static async Task<ICollection<ValidationError>> ValidateProductConfig(InsuranceProductRequest config)
+    static JsonSerializerOptions serializeOptions = new()
+    {
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+    };
+
+    public static async Task<ICollection<ValidationError>> ValidateProductConfiguration(JsonElement config)
+    {
+        var errors = await ValidateJsonStructure(config);
+        if (errors.Count == 0)
+        {
+            errors = ValidateSemantics(config);
+        }
+        return errors;
+    }
+
+    private static async Task<ICollection<ValidationError>> ValidateJsonStructure(JsonElement config)
     {
         var validationErrors = new List<ValidationError>();
 
-        var serializeOptions = new JsonSerializerOptions
-        {
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-        };
-
-        var json = JsonSerializer.Serialize(config, serializeOptions);
         var schema = await JsonSchema.FromFileAsync("./Schemas/ProductSchema.json");
-        var errors = schema.Validate(json);
+        var errors = schema.Validate(config.ToString());
 
         if (errors.Count > 0)
         {
@@ -38,16 +47,23 @@ public static class ProductConfigValidation
                     Message = $"{error.Kind} ({error.Property})"
                 });
             }
-            return validationErrors;
         }
 
-        // Json structur valid, continue with semantic validation
-        if (config.Ram.HasValue && !IsPowerOfTwo(config.Ram.Value))
+        return validationErrors;
+    }
+
+    private static ICollection<ValidationError> ValidateSemantics(JsonElement config)
+    {
+        var validationErrors = new List<ValidationError>();
+
+        var parameters = config.Deserialize<InsuranceProductRequest>(serializeOptions) ?? throw new Exception("Could not deserialize...");
+
+        if (parameters.PremiumAmount.HasValue && !IsPowerOfTwo(parameters.PremiumAmount.Value))
         {
             validationErrors.Add(new()
             {
-                Path = "#/Ram",
-                Message = "Ram must be a power of two."
+                Path = "#/PremiumAmount",
+                Message = "PremiumAmount must be a power of two."
             });
         }
 

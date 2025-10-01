@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using productapi.model;
 using productapi.validation;
@@ -7,14 +8,14 @@ var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
 
-app.MapPost("/products/{id}/configuration/validate", async Task<IResult> (string id, [FromBody] InsuranceProductRequest config) =>
+app.MapPost("/products/{id}/configuration/validate", async Task<IResult> (string id, [FromBody] JsonElement config) =>
 {
-    return Results.Ok(await ProductConfigValidation.ValidateProductConfig(config));
+    return Results.Ok(await ProductConfigValidation.ValidateProductConfiguration(config));
 });
 
-app.MapPost("/products/{id}/configuration/schema", async Task<IResult> (string id, [FromBody] InsuranceProductRequest config) =>
+app.MapPost("/products/{id}/configuration/schema", async Task<IResult> (string id, [FromBody] JsonElement config) =>
 {
-    var errors = await ProductConfigValidation.ValidateProductConfig(config);
+    var errors = await ProductConfigValidation.ValidateProductConfiguration(config);
     if (errors.Count > 0)
     {
         return Results.BadRequest(errors);
@@ -27,7 +28,8 @@ app.MapPost("/products/{id}/configuration/schema", async Task<IResult> (string i
         InsuranceProductDescription = "Some product description",
         Parameters = [
             new SurvivorProtection { Value = true },
-            new PayoutStartAge { Minimum = 55, Maximum = 65 }
+            new PremiumAmount { Minimum = 100, Maximum = 100000, Default = 1000 },
+            new PayoutStartAge { Minimum = 55, Maximum = 75, Default = 65 }
         ],
     };
 

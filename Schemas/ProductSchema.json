@@ -5,17 +5,24 @@
     "description": "A product from Acme's catalog",
     "type": "object",
     "properties": {
-        "ram": {
-            "description": "The size of the memory.",
+        "premiumAmount": {
+            "description": "premium amount",
             "type": "number",
-            "minimum": 256,
-            "maximum": 2048
+            "minimum": 100,
+            "maximum": 100000
+        },
+        "taxCategory": {
+            "enum": [
+                "P",
+                "T",
+                "K"
+            ]
         },
         "survivorProtection": {
             "type": "boolean"
         }
     },
     "required": [
-        "ram"
+        "taxCategory"
     ]
 }
