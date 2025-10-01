@@ -1,0 +1,21 @@
+meta {
+  name: Validate
+  type: http
+  seq: 3
+}
+
+post {
+  url: https://localhost:7213/products/123/configuration/validate
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "z": "2040-01-01",
+    "age": 58,
+    "premiumAmount": 1024,
+    "taxCategory": "T",
+    "survivorProtection": false
+  }
+}

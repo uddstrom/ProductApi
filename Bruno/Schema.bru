@@ -1,0 +1,20 @@
+meta {
+  name: Schema
+  type: http
+  seq: 2
+}
+
+post {
+  url: https://localhost:7213/products/123/configuration/schema
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "z": "2060-01-01",
+    "age": 70,
+    "taxCategory": "P",
+    "survivorProtection": true
+  }
+}
