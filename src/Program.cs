@@ -30,8 +30,10 @@ app.MapPost("/products/{prodcutId}/configuration/schema", async Task<IResult> (s
     {
         InsuranceProductName = "Pensionsförsäkring",
         InsuranceProductDescription = "Pensionsförsäkring",
+        TaxCategory = spec.TaxCategory,
         Z = spec.Z,
-        TaxCategory = spec.TaxCategory
+        Maturity = spec.Maturity,
+        BenefitProductId = spec.BenefitProductId
     };
 
     var engine = new RulesEngine(prodcutId, birthDate, lumeraStuff);

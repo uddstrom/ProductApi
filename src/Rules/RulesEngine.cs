@@ -15,8 +15,7 @@ public class RulesEngine
 
         // Populate the _rules collection based on productId
         _rules.Add(new PayoutStartDateRule(birthDate, lumeraSettings.Z, lumeraSettings.TaxCategory));
-        // _rules.Add(new SurvivorProtectionRule());
-        // _rules.Add(new PremiumAmountRule());
+        _rules.Add(new PayoutPeriodRule(birthDate, lumeraSettings.Z, lumeraSettings.BenefitProductId, lumeraSettings.Maturity));
     }
 
     public InsuranceProductSchema GetProductConfigurationSchema(InsuranceProductSpecification parameters)

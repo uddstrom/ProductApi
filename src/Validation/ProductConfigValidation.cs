@@ -81,14 +81,14 @@ public static class ProductConfigValidation
 
         var parameters = config.Deserialize<InsuranceProductSpecification>(serializeOptions) ?? throw new Exception("Could not deserialize...");
 
-        if (parameters.PremiumAmount.HasValue && !IsPowerOfTwo(parameters.PremiumAmount.Value))
-        {
-            validationErrors.Add(new()
-            {
-                Path = "#/PremiumAmount",
-                Message = "PremiumAmount must be a power of two."
-            });
-        }
+        //if (parameters.PremiumAmount.HasValue && !IsPowerOfTwo(parameters.PremiumAmount.Value))
+        //{
+        //    validationErrors.Add(new()
+        //    {
+        //        Path = "#/PremiumAmount",
+        //        Message = "PremiumAmount must be a power of two."
+        //    });
+        //}
 
         return validationErrors;
     }
