@@ -10,11 +10,10 @@
             "type": "string",
             "format": "date"
         },
-        "age": {
-            "description": "age of insured person",
-            "type": "number",
-            "minimum": 0,
-            "maximum": 120
+        "birthDate": {
+            "description": "birthDate of insured person",
+            "type": "string",
+            "format": "date"
         },
         "premiumAmount": {
             "description": "premium amount",
@@ -35,7 +34,7 @@
     },
     "required": [
         "z",
-        "age",
+        "birthDate",
         "taxCategory"
     ]
 }

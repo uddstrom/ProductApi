@@ -4,6 +4,14 @@ VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductApi", "src\ProductApi.csproj", "{932D6D10-08F1-BE04-D1F7-DDD08D6FB12F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductApi.UnitTests", "tests\ProductApi.UnitTests\ProductApi.UnitTests.csproj", "{A20ECFEC-9FE8-4B60-80B5-B756AC286C25}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bruno", "Bruno", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		Bruno\Schema.bru = Bruno\Schema.bru
+		Bruno\Validate.bru = Bruno\Validate.bru
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,6 +22,10 @@ Global
 		{932D6D10-08F1-BE04-D1F7-DDD08D6FB12F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{932D6D10-08F1-BE04-D1F7-DDD08D6FB12F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{932D6D10-08F1-BE04-D1F7-DDD08D6FB12F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A20ECFEC-9FE8-4B60-80B5-B756AC286C25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A20ECFEC-9FE8-4B60-80B5-B756AC286C25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A20ECFEC-9FE8-4B60-80B5-B756AC286C25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A20ECFEC-9FE8-4B60-80B5-B756AC286C25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

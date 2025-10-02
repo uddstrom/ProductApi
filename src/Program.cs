@@ -23,7 +23,7 @@ app.MapPost("/products/{prodcutId}/configuration/schema", async Task<IResult> (s
     var spec = ProductConfigValidation.JsonToParameters(config);
 
     // get age from jwt
-    var age = spec.Age;
+    var birthDate = spec.BirthDate;
 
     // get this stuff from Lumera
     var lumeraStuff = new LumeraSettings
@@ -34,7 +34,7 @@ app.MapPost("/products/{prodcutId}/configuration/schema", async Task<IResult> (s
         TaxCategory = spec.TaxCategory
     };
 
-    var engine = new RulesEngine(prodcutId, age, lumeraStuff);
+    var engine = new RulesEngine(prodcutId, birthDate, lumeraStuff);
     var schema = engine.GetProductConfigurationSchema(spec);
 
     return Results.Ok(schema);

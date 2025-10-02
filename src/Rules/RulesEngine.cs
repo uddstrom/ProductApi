@@ -8,13 +8,13 @@ public class RulesEngine
     private readonly LumeraSettings _lumeraSettings;
     private readonly ICollection<IProductRule> _rules = [];
 
-    public RulesEngine(string productId, int age, LumeraSettings lumeraSettings)
+    public RulesEngine(string productId, DateOnly birthDate, LumeraSettings lumeraSettings)
     {
         _productId = productId;
         _lumeraSettings = lumeraSettings;
 
         // Populate the _rules collection based on productId
-        _rules.Add(new PayoutStartDateRule(age, lumeraSettings.Z, lumeraSettings.TaxCategory));
+        _rules.Add(new PayoutStartDateRule(birthDate, lumeraSettings.Z, lumeraSettings.TaxCategory));
         // _rules.Add(new SurvivorProtectionRule());
         // _rules.Add(new PremiumAmountRule());
     }
