@@ -24,5 +24,4 @@ public class PayoutPeriodRuleTests
         Assert.Equal(expectedMin, result.Minimum);
         Assert.Equal(expectedMax, result.Maximum);
     }
-
 }
