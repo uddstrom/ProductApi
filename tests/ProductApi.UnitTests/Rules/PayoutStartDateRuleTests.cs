@@ -5,11 +5,6 @@ namespace productapi.unittests;
 
 public class PayoutStartDateRuleTests
 {
-
-    public PayoutStartDateRuleTests()
-    {
-    }
-
     [Theory]
     [InlineData("1959-06-01", "2024-05-01", "2024-09-01", "2026-05-01")] // 4-24
     [InlineData("1959-06-01", "2024-06-01", "2024-10-01", "2026-06-01")] // 4-24

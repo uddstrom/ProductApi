@@ -33,7 +33,6 @@ public class PayoutStartDateRule(DateOnly _birthdate, DateOnly _Z, TaxCategory _
         return new PayoutStartDate { Minimum = _Z, Maximum = _Z, Default = _Z };
     }
 
-
     private static double CalculateAge(DateOnly birthdate, DateOnly targetDate)
     {
         var daysLived = targetDate.DayNumber - birthdate.DayNumber;
