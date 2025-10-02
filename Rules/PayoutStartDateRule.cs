@@ -9,12 +9,11 @@ public class PayoutStartDateRule(int _age, DateOnly _Z, TaxCategory _taxCategory
         var maxAge = 100;
         var ageAtZ = GetAgeAtFutureDate(_age, _Z);
 
-
         if (_taxCategory == TaxCategory.P || _taxCategory == TaxCategory.T)
         {
             if (spec.Age < 65)
             {
-                // Z-4 mån - Z+24 mån
+                // Okej att rulla 4 - 24 månader
                 return new PayoutStartDate { Minimum = _Z.AddMonths(-4), Maximum = _Z.AddMonths(24), Default = _Z };
             }
 
@@ -26,11 +25,11 @@ public class PayoutStartDateRule(int _age, DateOnly _Z, TaxCategory _taxCategory
 
         if (ageAtZ + 1 < maxAge)
         {
-            // Z +- 12 mån
-            return new PayoutStartDate { Minimum = _Z.AddMonths(-12), Maximum = _Z.AddMonths(12), Default = _Z };
+            // Okej att rulla 12 månader.
+            return new PayoutStartDate { Minimum = _Z.AddMonths(12), Maximum = _Z.AddMonths(12), Default = _Z };
         }
 
-        // Rullning ej tillåten
+        // Rullning ej tillåten.
         return new PayoutStartDate { Minimum = _Z, Maximum = _Z, Default = _Z };
     }
 

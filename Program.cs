@@ -35,7 +35,7 @@ app.MapPost("/products/{prodcutId}/configuration/schema", async Task<IResult> (s
     };
 
     var engine = new RulesEngine(prodcutId, age, lumeraStuff);
-    var schema = engine.GetProdcutConfigurationSchema(spec);
+    var schema = engine.GetProductConfigurationSchema(spec);
 
     return Results.Ok(schema);
 });
