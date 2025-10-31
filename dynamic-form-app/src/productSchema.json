@@ -1,0 +1,23 @@
+{
+    "$id": "https://example.com/product.schema.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "ProductConfig",
+    "type": "object",
+    "properties": {
+        "firstName": {
+            "type": "text",
+            "name": "first-name",
+            "description": "example value ..."
+        },
+        "payoutPeriod": {
+            "type": "number",
+            "name": "payoutPeriod",
+            "label": "Utbetalningstid",
+            "description": "Utbetalningstid description....",
+            "default": 10,
+            "minimum": 5,
+            "maximum": 15
+        }
+    },
+    "requried": ["firstName"]
+}
