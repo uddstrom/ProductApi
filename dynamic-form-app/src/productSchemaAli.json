@@ -7,9 +7,9 @@
             "name": "PayoutStartDate",
             "label": "Utbetalningsstart",
             "type": "string",
-            "format": "date-time",
-            "formatMinimum": "2026-01-01T00:00:00Z", // works with Ajv
-            "formatMaximum": "2026-12-31T23:59:59Z", // works with Ajv
+            "format": "date",
+            "formatMinimum": "2026-01-01",
+            "formatMaximum": "2026-12-31",
             "default": "2026-06-01"
         },
         "payoutPeriod": {
