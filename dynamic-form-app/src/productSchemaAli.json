@@ -1,0 +1,43 @@
+{
+    "insuranceProductId": "654027",
+    "insuranceProductName": "Pensionsförsäkring",
+    "insuranceProductDescription": "Pensionsförsäkring med traditionell förvaltning skattekategori P",
+    "properties": {
+        "payoutStartDate": {
+            "name": "PayoutStartDate",
+            "label": "Utbetalningsstart",
+            "type": "string",
+            "format": "date-time",
+            "formatMinimum": "2026-01-01T00:00:00Z", // works with Ajv
+            "formatMaximum": "2026-12-31T23:59:59Z", // works with Ajv
+            "default": "2026-06-01"
+        },
+        "payoutPeriod": {
+            "name": "PayoutPeriod",
+            "label": "Utbetalningstid",
+            "type": "number",
+            "unit": "Months",
+            "minimum": 60,
+            "maximum": 370
+        },
+        "payoutPeriodType": {
+            "name": "PayoutPeriodType",
+            "label": "Utbetalningssätt",
+            "type": "array",
+            "validOptions": [
+                "Temporär"
+            ],
+            "default": "Livsvarig"
+        },
+        "survivorProtectionLength": {
+            "name": "SurvivorProtectionLength",
+            "label": "Längd efterlevandeskydd",
+            "type": "integer",
+            "unit": "Months",
+            "value": 0
+        }
+    },
+    "$id": "https://skandia.se/product.schema.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object"
+}

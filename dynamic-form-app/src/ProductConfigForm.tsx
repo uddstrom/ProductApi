@@ -1,15 +1,21 @@
-import React, { useState } from "react";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import React, { useState } from 'react';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 
-const ProductConfigForm = ({ zSchema, schema, onSubmit }) => {
-    const [formData, setFormData] = useState({});
-    const [formErrors, setFormErrors] = useState({});
+interface IProductConfigFormProps {
+    zSchema: ZodType;
+    jSchema: JSONSchema;
+    onSubmit: (formData: HTMLFormElement) => void;
+}
+
+const ProductConfigForm: React.FC<IProductConfigFormProps> = ({ zSchema, jSchema, onSubmit }) => {
+    const [formData, setFormData] = useState<HTMLFormElement>({} as HTMLFormElement);
+    // const [formErrors, setFormErrors] = useState({});
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         setFormData({
             ...formData,
-            [name]: type === "checkbox" ? checked : value,
+            [name]: type === 'checkbox' ? checked : value,
         });
     };
 
@@ -31,7 +37,7 @@ const ProductConfigForm = ({ zSchema, schema, onSubmit }) => {
         }
     };
 
-    const renderField = (parameter) => {
+    const renderField = (parameter: object) => {
         switch (parameter.type) {
             default:
                 // Handle other HTML5 input types like date, email, etc.
@@ -42,7 +48,7 @@ const ProductConfigForm = ({ zSchema, schema, onSubmit }) => {
                         placeholder={parameter.placeholder}
                         onChange={handleChange}
                         required={parameter.required}
-                        value={formData[parameter.name] || ""}
+                        value={formData[parameter.name] || ''}
                     />
                 );
         }
@@ -50,16 +56,13 @@ const ProductConfigForm = ({ zSchema, schema, onSubmit }) => {
 
     return (
         <Form onSubmit={handleSubmit}>
-            <h3>{schema.title}</h3>
+            <h3>{jSchema.title}</h3>
             <Row>
-                {Object.entries(schema.properties).map(
-                    (
-                        [parameterName, parameter]: [string, object],
-                        fieldIndex: number,
-                    ): void => {
+                {Object.entries(jSchema.properties).map(
+                    ([parameterName, parameter]: [string, object], fieldIndex: number): void => {
                         return (
                             <Col md={6} sm={12} key={fieldIndex}>
-                                <Form.Group className="mb-3">
+                                <Form.Group className='mb-3'>
                                     <Form.Label>{parameterName}</Form.Label>
                                     {renderField(parameter)}
                                     {/* {formErrors[field.name] && ( */}
@@ -70,10 +73,10 @@ const ProductConfigForm = ({ zSchema, schema, onSubmit }) => {
                                 </Form.Group>
                             </Col>
                         );
-                    },
+                    }
                 )}
             </Row>
-            <Button variant="primary" type="submit">
+            <Button variant='primary' type='submit'>
                 Submit
             </Button>
         </Form>

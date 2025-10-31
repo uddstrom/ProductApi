@@ -5,9 +5,11 @@
     "type": "object",
     "properties": {
         "firstName": {
-            "type": "text",
-            "name": "first-name",
-            "description": "example value ..."
+            "type": "string",
+            "name": "förnamn",
+            "description": "example value ...",
+            "minLength": 1,
+            "maxLength": 13
         },
         "payoutPeriod": {
             "type": "number",
@@ -19,5 +21,7 @@
             "maximum": 15
         }
     },
-    "requried": ["firstName"]
+    "requried": [
+        "firstName"
+    ]
 }
